@@ -1,0 +1,51 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Edit Profile</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <mat-form-field>
+<!-- ngModel directive used to bind the form input values entered by the user to the profileData object 
+  in the edit-profile-form component. Tooltips display the validation requirements -->
+        <input 
+				matInput
+				[(ngModel)]="userData.Username" 
+				type="text" 
+				placeholder="Username" 
+				name="Username"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input 
+				matInput 
+				[(ngModel)]="userData.Password" 
+				type = "password" 
+				placeholder="Password" 
+				name="Password"
+				/>
+      </mat-form-field>
+      <mat-form-field>
+        <input 
+				matInput 
+				[(ngModel)]="userData.Email" 
+				type = "email" 
+				placeholder="Email" 
+				name="Email"
+				/>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="userData.Birthday" type = "date" placeholder="Birthday" name="Birthday">
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+<!-- Event binding used to invoke the updateProfile function in the edit-profile-form component when the button is clicked -->
+		<button 
+		mat-raised-button 
+		(click)="editUserProfile()" 
+		color="primary"
+		>
+		Update
+		</button>
+  </mat-card-actions>
+</mat-card>
