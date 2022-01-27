@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserProfileComponent } from '../edit-user-profile/edit-user-profile.component';
+import { GenreViewComponent } from '../genre-view/genre-view.component';
+import { DirectorViewComponent } from '../director-view/director-view.component';
+import { SynopsisViewComponent } from '../synopsis-view/synopsis-view.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -25,10 +28,11 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
+    this.getFavorites();
   }
 
   getUser(): void {
-    this.fetchApiData.getUser(this.user).subscribe((result: any) => {
+    this.fetchApiData.getUser(this.user.Username).subscribe((result: any) => {
       this.user = result;
       console.log(this.user);
       return this.user;
@@ -44,6 +48,7 @@ export class UserProfileComponent implements OnInit {
         }
       });
     });
+    console.log(this.favoriteMovies);
     return this.favoriteMovies;
   }
 
@@ -68,6 +73,37 @@ export class UserProfileComponent implements OnInit {
   // Assigning the dialog a width
     width: '500px'
     });
+  }
+
+  openGenreDialog(
+    name: string,
+    description: string
+  ): void {
+    this.dialog.open(GenreViewComponent, {
+      data: { name: name, description: description },
+      width: '400px'
+    })
+  }
+
+  openDirectorDialog(
+    name: string,
+    bio: string,
+    birth: any
+  ): void {
+    this.dialog.open(DirectorViewComponent, {
+      data: { name: name, bio: bio, birth: birth },
+      width: '400px'
+    })
+  }
+
+  openSynopsisDialog(
+    title: string,
+    description: string
+  ): void {
+    this.dialog.open(SynopsisViewComponent, {
+      data: { title: title, description: description },
+      width: '400px'
+    })
   }
 
 }
