@@ -1,0 +1,19 @@
+// .movie-card {
+// 	max-width: 400px;
+
+// }	
+
+.container {
+	padding: 2em;
+	width: 100%;
+	min-height: 100%;
+
+	.movie-img {
+		width: 100%;
+	}
+
+	.movie-card {
+		width: 33%;
+		margin-bottom: 2%
+	}
+}
