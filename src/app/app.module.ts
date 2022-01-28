@@ -8,6 +8,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -15,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule } from '@angular/forms';
 
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
@@ -26,6 +29,7 @@ import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.
 import { GenreViewComponent } from './genre-view/genre-view.component';
 import { DirectorViewComponent } from './director-view/director-view.component';
 import { SynopsisViewComponent } from './synopsis-view/synopsis-view.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 const appRoutes: Routes = [
@@ -46,7 +50,8 @@ const appRoutes: Routes = [
     EditUserProfileComponent,
     GenreViewComponent,
     DirectorViewComponent,
-    SynopsisViewComponent
+    SynopsisViewComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +68,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     MatIconModule,
     FlexLayoutModule,
+    MatTabsModule,
+    MatSidenavModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
