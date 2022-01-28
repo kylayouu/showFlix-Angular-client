@@ -1,0 +1,36 @@
+.user-profile-wrapper {
+	height: 40%;
+	background-color: rgb(12, 22, 32);
+	padding: 30px;
+	display: flex;
+
+	.mat-card {
+		padding: 5em;
+		border-radius: 20px;
+		border: 1px solid rgb(224, 224, 224);
+		box-shadow: 1px 1px 60px #e7e7e7;
+		width: fit-content;
+		margin: auto;
+		text-align: center;
+		
+		h2 {
+			font-size: 30px;
+		}
+		
+		.mat-card-content {
+			font-size: 18px;
+		}
+		
+
+		// h1 {
+		// 	font-size: 50px;
+		// 	margin-bottom: 30px;
+		// }
+
+		// button {
+		// 	padding: 2px 50px;
+		// 	margin: 0 1em;
+		// 	font-size: 25px;
+		// }
+	}
+}

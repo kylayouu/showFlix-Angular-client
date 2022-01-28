@@ -1,16 +1,16 @@
 <!-- *ngFor directive is to display all returned movies, each in its own card -->
 <div class='container' fxLayout='row wrap' fxLayout.xs='column' fxLayoutGap="5%" fxLayoutAlign="center">
+
 <mat-card 
 class='movie-card' 
 *ngFor="let movie of movies; let i=index;" 
-fxFlex="0 1 calc(33.3% - 32px)"
-fxFlex.lt-md="0 1 calc(50% - 32px)"
-fxFlex.lt-sm="100%"
+fxFlex.lt-md="0 1 calc(33.3% - 32px)"
+fxFlex.lt-sm="0 1 calc(50% - 32px)"
+fxFlex.lt-xs="100%"
+fxFlexAlign='center'
 >
-	<mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">{{movie.Title}}</mat-card-title>
-
-		<img mat-card-image src={{movie.ImagePath}} class='movie-img'>
-
+	<mat-card-title class='movie-card-title'>{{movie.Title}}</mat-card-title>
+	<img mat-card-image src={{movie.ImagePath}} class='movie-img'>
 	<mat-card-actions>
 		<button
 			mat-button
@@ -45,5 +45,6 @@ fxFlex.lt-sm="100%"
 		</button>
 		<mat-icon>favorite_border</mat-icon>
 </mat-card-actions>
+
 </mat-card>
 </div>

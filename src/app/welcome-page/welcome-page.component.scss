@@ -1,0 +1,24 @@
+.main-page {
+	text-align: center;
+	height: 100%;
+	margin: auto;
+	background-color: rgb(12, 22, 32);
+
+	.mat-card {
+		padding: 10em;
+		border-radius: 80px;
+		border: 1px solid rgb(224, 224, 224);
+		box-shadow: 1px 1px 60px #e7e7e7;
+
+		h1 {
+			font-size: 50px;
+			margin-bottom: 30px;
+		}
+
+		button {
+			padding: 20px 50px;
+			margin: 0 1em;
+			font-size: 25px;
+		}
+	}
+}
