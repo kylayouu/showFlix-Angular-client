@@ -15,9 +15,9 @@ import { SynopsisViewComponent } from '../synopsis-view/synopsis-view.component'
 })
 export class UserProfileComponent implements OnInit {
 
+  // Username = localStorage.getItem('user');
   user : any = JSON.parse(localStorage.getItem('user') || '');
   favoriteMovies : any = {};
-  movies : any[] = [];
 
   constructor( 
     public fetchApiData: FetchApiDataService,
@@ -32,39 +32,39 @@ export class UserProfileComponent implements OnInit {
   }
 
   getUser(): void {
-    this.fetchApiData.getUser(this.user.Username).subscribe((result: any) => {
+    this.fetchApiData.getUser(this.user).subscribe((result: any) => {
       this.user = result;
       console.log(this.user);
       return this.user;
     })
   }
 
-  getFavorites(): void {
-    this.fetchApiData.getAllMovies().subscribe((result: any) => {
-      this.movies = result;
-      this.movies.forEach((movie: any) => {
-        if (this.user.FavoriteMovies.includes(movie._id)) {
-        this.favoriteMovies.push(movie);
-        }
-      });
-    });
-    console.log(this.favoriteMovies);
-    return this.favoriteMovies;
-  }
-
   deleteUser(): void {
     this.fetchApiData.deleteUser(this.user).subscribe(() => {
-      localStorage.removeItem('user');
       this.snackBar.open('User has been removed successfully.' , 'OK', {
         duration: 3000
       });
+      localStorage.clear();
       this.router.navigate(['welcome']);
-    }, (result) => {
+    });
+  }
+
+  getFavorites(): void {
+    this.fetchApiData.getUser(this.user).subscribe((result: any) => {
+      this.favoriteMovies = result.FavoriteMovies;
+      console.log(this.favoriteMovies);
+      return this.favoriteMovies;
+    });
+  }
+
+  deleteFavorite(movieId: string): void {
+    this.fetchApiData.deleteFavorite(movieId).subscribe((result: any) => {
       console.log(result);
-      this.snackBar.open('User could not be deleted. Please try again.', 'OK', {
+      this.ngOnInit();
+      this.snackBar.open('Movie has been removed from favorites.', 'OK', {
         duration: 3000
       });
-    });
+    })
   }
 
   // This is the function that will open the dialog when the Edit Profile button is clicked  

@@ -90,7 +90,7 @@ export class FetchApiDataService {
   }
 
   // Making the api call for getting a user's info
-  public getUser(username: string): Observable<any> {
+  public getUser(username: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'users/' + username , {
       headers: new HttpHeaders(
@@ -104,7 +104,7 @@ export class FetchApiDataService {
   }
 
   // Making the api call for editing a user's info
-  public editUser(username: string, newUserInfo: object): Observable<any> {
+  public editUser(username: any, newUserInfo: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.put(apiUrl + 'users/' + username , newUserInfo, {
       headers: new HttpHeaders(
@@ -132,7 +132,8 @@ export class FetchApiDataService {
   }
 
   // Making the api call for adding a movie to a user's favorites list
-  public addFavorite(username: string, movieId: string): Observable<any> {
+  public addFavorite(movieId: string): Observable<any> {
+    const username = localStorage.getItem('user');
     const token = localStorage.getItem('token');
     return this.http.post(apiUrl + 'users/' + username + '/favorites' + movieId, {
       headers: new HttpHeaders(
@@ -146,7 +147,8 @@ export class FetchApiDataService {
   }
 
   // Making the api call for removing a movie from a user's favorites list
-  deleteFavorite(username: string, movieId: string): Observable<any> {
+  deleteFavorite(movieId: string): Observable<any> {
+    const username = localStorage.getItem('user');
     const token = localStorage.getItem('token');
     return this.http.delete(apiUrl + 'users/' + username + '/favorites/' + movieId, {
       headers: new HttpHeaders(
@@ -160,7 +162,7 @@ export class FetchApiDataService {
   }
 
   // Making the api call for deleting a user
-  public deleteUser(username: string): Observable<any> {
+  public deleteUser(username: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.delete(apiUrl + 'users/' + username , {
       headers: new HttpHeaders(
