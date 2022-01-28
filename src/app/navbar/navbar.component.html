@@ -1,0 +1,18 @@
+<mat-toolbar class ='navbar'>
+	<div>
+		<a routerLink='/movies'>showFlix</a>
+	</div>
+	<div fxFlex fxLayout fxLayoutAlign='end' fxHide.xs>
+		<ul fxLayout fxLayoutGap='15px' class='navigation-items'>
+			<li>
+				<a routerLink='/movies'>Movies</a>
+			</li>
+			<li>
+				<a routerLink='/profile'>My Account</a>
+			</li>
+			<li>
+				<a routerLink='/welcome' (click)='onLogOut()'>Log Out</a>
+			</li>
+		</ul>
+	</div>
+</mat-toolbar>
