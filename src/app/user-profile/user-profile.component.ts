@@ -16,7 +16,7 @@ import { SynopsisViewComponent } from '../synopsis-view/synopsis-view.component'
 export class UserProfileComponent implements OnInit {
 
   // Username = localStorage.getItem('user');
-  user : any = JSON.parse(localStorage.getItem('user') || '');
+  user : any = {};
   favoriteMovies : any = {};
 
   constructor( 
@@ -31,14 +31,23 @@ export class UserProfileComponent implements OnInit {
     this.getFavorites();
   }
 
+  /**
+   * gets user information
+   * @returns user data as an object
+   */
   getUser(): void {
-    this.fetchApiData.getUser(this.user).subscribe((result: any) => {
+    const user = localStorage.getItem('user');
+    this.fetchApiData.getUser(user).subscribe((result: any) => {
       this.user = result;
       console.log(this.user);
-      return this.user;
     })
+    return this.user;
   }
 
+  /**
+   * deletes user
+   * @returns user deletion status and navigates to welcome page
+   */
   deleteUser(): void {
     this.fetchApiData.deleteUser(this.user).subscribe(() => {
       this.snackBar.open('User has been removed successfully.' , 'OK', {
@@ -49,14 +58,22 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * gets user's favorite movies list
+   */
   getFavorites(): void {
-    this.fetchApiData.getUser(this.user).subscribe((result: any) => {
+    const user = localStorage.getItem('user');
+    this.fetchApiData.getUser(user).subscribe((result: any) => {
       this.favoriteMovies = result.FavoriteMovies;
       console.log(this.favoriteMovies);
       return this.favoriteMovies;
     });
   }
 
+  /**
+   * deletes a movie from a user's favorites list
+   * @param movieId of the movie to be deleted from user's favorites list
+   */
   deleteFavorite(movieId: string): void {
     this.fetchApiData.deleteFavorite(movieId).subscribe((result: any) => {
       console.log(result);
@@ -67,14 +84,20 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
-  // This is the function that will open the dialog when the Edit Profile button is clicked  
+  /**
+   * opens dialog showing form for user to edit information
+   */
   openEditUserProfileDialog(): void {
     this.dialog.open(EditUserProfileComponent, {
-  // Assigning the dialog a width
     width: '500px'
     });
   }
 
+  /**
+   * opens dialog showing genre data
+   * @param name of genre
+   * @param description of genre
+   */
   openGenreDialog(
     name: string,
     description: string
@@ -85,6 +108,12 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
+  /**
+   * opens dialog showing director data
+   * @param name of director
+   * @param bio of director
+   * @param birth of director
+   */
   openDirectorDialog(
     name: string,
     bio: string,
@@ -96,6 +125,11 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
+  /**
+   * opens dialog showing movie's synopsis data
+   * @param title of movie
+   * @param description of movie
+   */
   openSynopsisDialog(
     title: string,
     description: string

@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
 })
 export class EditUserProfileComponent implements OnInit {
 
-  // user : any = JSON.parse(localStorage.getItem('user') || '');
   user: any = {};
   Username = localStorage.getItem('user');
 
@@ -42,13 +41,15 @@ export class EditUserProfileComponent implements OnInit {
     });
   }
 
-
-  // This is the function responsible for sending the form inputs to the backend
+  /**
+   * This is the function responsible for sending the form inputs to the backend
+   */
   editUserProfile(): void {
-    this.fetchApiData.editUser(this.user.Username, this.userData).subscribe((result) => {
+    this.fetchApiData.editUser(this.Username, this.userData).subscribe((result) => {
     this.dialogRef.close(); // This will close the modal
     console.log(result);
-    localStorage.setItem('user', JSON.stringify(this.userData))
+    localStorage.setItem('Username', this.userData.Username);
+    localStorage.setItem('Password', this.userData.Password);
     this.snackBar.open('User profile update successful', 'OK', {
         duration: 2000
     });

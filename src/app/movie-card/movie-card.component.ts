@@ -12,8 +12,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent implements OnInit {
-  // variable declared as an array for movies returned from API
-  user: any = JSON.parse(localStorage.getItem('user') || '');
+  
+  /**
+   * variable declared as an array for movies returned from API
+   */
+  user: any = [];
   movies: any[] = [];
   favoriteMovies: any[] = [];
 
@@ -24,12 +27,18 @@ export class MovieCardComponent implements OnInit {
 
   ) { }
 
-  // called when Angular is done creating the component
+  /**
+   * called when Angular is done creating the component
+   */
   ngOnInit(): void {
     this.getMovies();
     this.getFavorites();
   }
 
+  /**
+   * gets list of all movies
+   * @returns array of movies
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((result: any) => {
       this.movies = result;
@@ -38,6 +47,11 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  /**
+   * opens dialog showing genre information
+   * @param name of genre
+   * @param description of genre
+   */
   openGenreDialog(
     name: string,
     description: string
@@ -48,6 +62,12 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  /**
+   * opens dialog showing director information
+   * @param name of director
+   * @param bio of director
+   * @param birth of director
+   */
   openDirectorDialog(
     name: string,
     bio: string,
@@ -59,6 +79,11 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  /**
+   * opens dialog showing synopsis information
+   * @param title of movie
+   * @param description of movie
+   */
   openSynopsisDialog(
     title: string,
     description: string
@@ -69,14 +94,24 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  /**
+   * function to get user's favorite movies list
+   * @returns array of user's favorite movies
+   */
   getFavorites(): void {
-    this.fetchApiData.getUser(this.user).subscribe((result: any) => {
+    const user = localStorage.getItem('user');
+    this.fetchApiData.getUser(user).subscribe((result: any) => {
       this.favoriteMovies = result.FavoriteMovies;
       console.log(this.favoriteMovies);
       return this.favoriteMovies;
     })
   }
 
+  /**
+   * function to add movie to user's favorites list
+   * @param movieId movie ID of movie to add to user's favorites list
+   * @returns updated array with new favorited movie
+   */
   addFavorite(movieId: string): void {
     this.fetchApiData.addFavorite(movieId).subscribe((result: any) => {
       console.log(result);
@@ -84,7 +119,8 @@ export class MovieCardComponent implements OnInit {
         duration: 3000
       });
       this.ngOnInit();
-    })
+    });
+    return this.getFavorites();
   }
 
   deleteFavorite(movieId: string): void {
@@ -98,10 +134,18 @@ export class MovieCardComponent implements OnInit {
     return this.getFavorites();
   }
 
+  /**
+   * to check if movie is already part of user's favorites
+   * @returns boolean true or false
+   */
   inFaveList(movieId: string): boolean {
     return this.favoriteMovies.some((movie) => movie._id === movieId)
   }
 
+  /**
+   * toggle function to either add movie to favorites or not
+   * @param movie movie ID of movie to add to favorites or not
+   */
   toggleFavorite(movie: any): void {
     this.inFaveList(movie._id)
       ? this.deleteFavorite(movie._id)
