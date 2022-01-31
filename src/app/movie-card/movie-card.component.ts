@@ -13,12 +13,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class MovieCardComponent implements OnInit {
   
-  /**
-   * variable declared as an array for movies returned from API
-   */
-  user: any = [];
-  movies: any[] = [];
-  favoriteMovies: any[] = [];
+  user : any = {};
+  movies : any = [];
+  favoritesList : any = [];
 
   constructor( 
     public fetchApiData: FetchApiDataService,
@@ -32,7 +29,7 @@ export class MovieCardComponent implements OnInit {
    */
   ngOnInit(): void {
     this.getMovies();
-    this.getFavorites();
+    // this.getFavorites();
   }
 
   /**
@@ -95,19 +92,6 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
-   * function to get user's favorite movies list
-   * @returns array of user's favorite movies
-   */
-  getFavorites(): void {
-    const user = localStorage.getItem('user');
-    this.fetchApiData.getUser(user).subscribe((result: any) => {
-      this.favoriteMovies = result.FavoriteMovies;
-      console.log(this.favoriteMovies);
-      return this.favoriteMovies;
-    })
-  }
-
-  /**
    * function to add movie to user's favorites list
    * @param movieId movie ID of movie to add to user's favorites list
    * @returns updated array with new favorited movie
@@ -118,37 +102,36 @@ export class MovieCardComponent implements OnInit {
       this.snackBar.open('Movie has been added to your favorites.', 'OK', {
         duration: 3000
       });
-      this.ngOnInit();
     });
-    return this.getFavorites();
   }
 
-  deleteFavorite(movieId: string): void {
+  /**
+   * deletes a movie from a user's favorites list
+   * @param movieId of the movie to be deleted from user's favorites list
+   */
+   deleteFavorite(movieId: string): void {
     this.fetchApiData.deleteFavorite(movieId).subscribe((result: any) => {
       console.log(result);
-      this.ngOnInit();
+      // this.ngOnInit();
       this.snackBar.open('Movie has been removed from favorites.', 'OK', {
         duration: 3000
       });
+      setTimeout(function () {
+        window.location.reload();
+      });
     });
-    return this.getFavorites();
+    // return this.getFavorites();
   }
 
-  /**
-   * to check if movie is already part of user's favorites
-   * @returns boolean true or false
-   */
-  inFaveList(movieId: string): boolean {
-    return this.favoriteMovies.some((movie) => movie._id === movieId)
-  }
-
-  /**
+    /**
    * toggle function to either add movie to favorites or not
-   * @param movie movie ID of movie to add to favorites or not
+   * @param movieId movie ID of movie to add to favorites or not
    */
-  toggleFavorite(movie: any): void {
-    this.inFaveList(movie._id)
-      ? this.deleteFavorite(movie._id)
-      : this.addFavorite(movie._id);
+   toggleFavorite(movieId: any): any {
+    if (this.favoritesList.includes(movieId)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -1,5 +1,5 @@
 <!-- *ngFor directive is to display all returned movies, each in its own card -->
-<div class='movie-container' fxLayout='row wrap' fxLayout.xs='column' fxLayoutGap="5%" fxLayoutAlign="center">
+<div class='movie-container' fxLayout='row wrap' fxLayout.xs='column' fxLayoutGap='5%' fxLayoutAlign='center'>
 
 <mat-card 
 class='movie-card' 
@@ -43,12 +43,11 @@ fxFlexAlign='center'
 		>
 			Synopsis
 		</button>
-		<!-- <mat-icon>favorite_border</mat-icon> -->
-		<mat-icon class="fav-icon" *ngIf="inFaveList(movie._id)" (click)="toggleFavorite(movie._id)" color="primary">favorite
-		</mat-icon>
-		<mat-icon class="fav-icon" *ngIf="!inFaveList(movie._id)" (click)="toggleFavorite(movie._id)" color="primary">
-			favorite_border
-		</mat-icon>
+		<button aria-label='favorite movie toggle' mat-button>
+			<mat-icon *ngIf="!toggleFavorite(movie._id)" (click)="addFavorite(movie._id)" color="primary">
+				favorite_border
+			</mat-icon>
+		</button>
 </mat-card-actions>
 
 </mat-card>
