@@ -13,9 +13,6 @@ import { EditUserProfileComponent } from '../edit-user-profile/edit-user-profile
 })
 export class UserProfileComponent implements OnInit {
 
-  // getUserFromStorage: any = localStorage.getItem('user');
-  // userFromStorage: any = JSON.parse(this.getUserFromStorage);
-  // username: any = this.userFromStorage.Username;
   user : any = {};
 
   constructor( 
@@ -34,9 +31,6 @@ export class UserProfileComponent implements OnInit {
    * @returns user data as an object
    */
   getUser(): void {
-    // const user = (JSON.parse(localStorage.getItem('user') || ''));
-    // const user = localStorage.getItem('user');
-    // console.log(user);
     this.fetchApiData.getUser().subscribe((result: any) => {
       this.user = result;
       return this.user;
