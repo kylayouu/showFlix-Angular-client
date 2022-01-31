@@ -13,9 +13,6 @@ import { EditUserProfileComponent } from '../edit-user-profile/edit-user-profile
 })
 export class UserProfileComponent implements OnInit {
 
-  // getUserFromStorage: any = localStorage.getItem('user');
-  // userFromStorage: any = JSON.parse(this.getUserFromStorage);
-  // username: any = this.userFromStorage.Username;
   user : any = {};
 
   constructor( 
