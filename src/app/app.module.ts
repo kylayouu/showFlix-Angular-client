@@ -31,11 +31,13 @@ import { DirectorViewComponent } from './director-view/director-view.component';
 import { SynopsisViewComponent } from './synopsis-view/synopsis-view.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FavoritesListComponent } from './favorites-list/favorites-list.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
   { path: 'profile', component: UserProfileComponent },
+  { path: 'favorites', component: FavoritesListComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ]
 
@@ -51,7 +53,8 @@ const appRoutes: Routes = [
     GenreViewComponent,
     DirectorViewComponent,
     SynopsisViewComponent,
-    NavbarComponent
+    NavbarComponent,
+    FavoritesListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,77 +1,27 @@
-<div class="user-profile-wrapper">
+<div class='user-profile-container'>
   <mat-card>
     <mat-card-header>
       <mat-card-title>
-        <h2>Welcome <b>{{ user.Username }}</b>!</h2></mat-card-title
-      >
+        <h2>Welcome <b>{{ user.Username }}</b>!</h2>
+      </mat-card-title>
     </mat-card-header>
-    <mat-card-content class="card-content">
+    <mat-card-content class='card-content'>
       <p><b>Username</b>: {{ user.Username }}</p>
       <p><b>Email</b>: {{ user.Email }}</p>
-      <p><b>Birthday</b>: {{ user.Birthday | date: "MM/dd/yyyy":"UTC" }}</p>
+      <p><b>Birthday</b>: {{ user.Birthday | date: 'MM/dd/yyyy':'UTC' }}</p>
     </mat-card-content>
     <mat-card-actions>
       <button
-        class="float-right"
+        
         mat-raised-button
-        color="primary"
-        (click)="openEditUserProfileDialog()"
+        color='primary'
+        (click)='openEditUserProfileDialog()'
       >
         Edit
       </button>
-      <button mat-raised-button color="primary" (click)="deleteUser()">
+      <!-- <button mat-raised-button color="primary" (click)="deleteUser()">
         Delete
-      </button>
+      </button> -->
     </mat-card-actions>
-  </mat-card>
-</div>
-
-<div class='user-favorites-wrapper'>
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>
-        <h2>My Favorite Movies</h2>
-      </mat-card-title>
-    </mat-card-header>
-  </mat-card>
-  <mat-card>
-    <mat-card-title>
-      <h2>{{favoriteMovies.Title}}</h2>
-    </mat-card-title>
-    <mat-card-subtitle><img src={{favoriteMovies.ImagePath}} alt='movie-img'/></mat-card-subtitle>
-    <mat-card-actions>
-      <button
-        mat-button
-        color='primary'
-        (click)='openGenreDialog(
-          favoriteMovies.Genre.name, 
-          favoriteMovies.Genre.description
-        )'
-      >
-        Genre
-      </button>
-      <button
-        mat-button
-        color='primary'
-        (click)='openDirectorDialog(
-          favoriteMovies.Director.name,
-          favoriteMovies.Director.bio,
-          favoriteMovies.Director.birth
-        )'
-      >
-        Director
-      </button>
-      <button
-        mat-button
-        color='primary'
-        (click)='openSynopsisDialog(
-          favoriteMovies.title, 
-          favoriteMovies.description
-        )'
-      >
-        Synopsis
-      </button>
-      <mat-icon>favorite_border</mat-icon>
-  </mat-card-actions>
   </mat-card>
 </div>

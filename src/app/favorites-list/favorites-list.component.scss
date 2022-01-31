@@ -1,0 +1,38 @@
+.user-favorites-container {
+	padding: 2em;
+	width: 100%;
+	min-height: 100%;
+	background-color: rgb(12, 22, 32);
+
+	.movie-card-title {
+		text-align: center;
+		padding: 15px;
+		line-height: 1em;
+	}
+
+	.movie-img {
+		height: 80%;
+		object-fit: cover;
+	}
+
+	.movie-card {
+		width: 300px;
+		height: 500px;
+		margin-bottom: 2em;
+		display: flex;
+  	flex-direction: column;
+	}
+
+	.mat-card-actions {
+		text-align: center;
+	}
+
+	.mat-button {
+		margin: 0;
+		padding: 5px;
+	}
+
+	.mat-icon {
+		padding: 0 12px
+	}
+}
